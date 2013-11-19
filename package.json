@@ -1,0 +1,31 @@
+{
+  "name": "quicknpm",
+  "version": "0.0.0",
+  "description": "Quickly bootstrap a node module folder layout",
+  "main": "bin/quicknpm.js",
+  "preferGlobal": "true",
+  "bin": {
+    "quicknpm": "bin/quicknpm.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/binocarlos/quicknpm.git"
+  },
+  "keywords": [
+    "npm",
+    "bootstrap"
+  ],
+  "author": "Kai Davenport",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/binocarlos/quicknpm/issues"
+  },
+  "dependencies": {
+    "commander": "~2.0.0",
+    "async": "~0.2.9",
+    "wrench": "~1.5.4"
+  }
+}
