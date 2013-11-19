@@ -18,18 +18,34 @@ $ quicknpm init
 $ npm install quicknpm --save
 ```
 
-## API
+## Usage
 
-There is one command right now:
+From the command line you can bootstrap a new node module.
 
-Create a new node module in the current folder:
+In the current folder:
 ```
 $ quicknpm init
 ```
 
-Create a new node module in a specific folder:
+In a specific folder:
 ```
 $ quicknpm init /my/custom/folder
+```
+
+## API
+
+You can use the module from within your own node program:
+
+```js
+var QuickNPM = require('quicknpm');
+
+var job = new QuickNPM();
+
+job.on('complete', function(){
+	
+})
+
+job.init('/my/project/folder');
 ```
 
 ## License

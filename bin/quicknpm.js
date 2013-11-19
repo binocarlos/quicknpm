@@ -6,36 +6,8 @@
 var version = require(__dirname + '/../package.json').version;
 var program = require("commander");
 var path = require('path');
-var child_process = require('child_process');
-var async = require('async');
-var copy = require('directory-copy');
-var fs = require('fs');
 
-function copy_files(target, done){
-  var source = path.normalize(__dirname + '/../template');
-  console.log('copy files: ' + source + ' -> ' + target);
-  copy(
-    { src: source
-    , dest: target
-    , excludes: []
-    }
-  , function () {
-    console.log('files copied');
-    done && done();
-  })
-  .on('log', function (msg, level) {
-    // Level is debug, info, warn or error
-    console.log(level + ': ' + msg)
-  })
-}
-
-function run_command(command, args, options, done){
-  var command = child_process.spawn(command, args, options);
-
-  command.on('close', function (code) {
-    done && done();
-  });
-}
+var QuickNPM = require('../src');
 
 program
   .version(version)
@@ -47,27 +19,12 @@ program
     
     folder = folder || path.normalize(process.cwd());
 
-    async.series([
-      function(next){
-        copy_files(folder, next);
-      },
-
-      function(next){
-        run_command('npm', ['init'], {
-          cwd:folder,
-          stdio: 'inherit'
-        }, next);
-      },
-
-      function(next){
-        run_command('npm', ['install', 'mocha', 'should', '--save'], {
-          cwd:folder,
-          stdio: 'inherit'
-        }, next);
-      }
-    ], function(error){
+    var job = new QuickNPM();
+    
+    job.init(folder, function(){
       console.log('module created');
     })
+
     
 
   })

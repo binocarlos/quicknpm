@@ -2,7 +2,7 @@
   "name": "quicknpm",
   "version": "0.0.0",
   "description": "Quickly bootstrap a node module folder layout",
-  "main": "bin/quicknpm.js",
+  "main": "src/index.js",
   "preferGlobal": "true",
   "bin": {
     "quicknpm": "bin/quicknpm.js"
